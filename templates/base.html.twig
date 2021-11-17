@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+{% for day, cities in result %}
+
+    <h2>Day {{ day }}</h2>
+
+    {% for cityName, equipments in cities %}
+
+        <b>City : {{ cityName }}</b> <br> <br>
+
+        {% for equipmentName, stockDemands in equipments %}
+            {{ equipmentName }}
+
+            {% for key, stockDemand in stockDemands %}
+                {  {{ key }} : {{ stockDemand }} }
+            {% endfor %}
+            <br>
+
+        {% endfor %}
+        <br>
+    {% endfor %}
+    <hr>
+{% endfor %}
+
+</body>
 </html>
